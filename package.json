@@ -1,0 +1,23 @@
+{
+  "name": "e-commerce-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santhosh1933/e-commerce-training-backend.git"
+  },
+  "author": "santhosh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Santhosh1933/e-commerce-training-backend/issues"
+  },
+  "homepage": "https://github.com/Santhosh1933/e-commerce-training-backend#readme",
+  "dependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
