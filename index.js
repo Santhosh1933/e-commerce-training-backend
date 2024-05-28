@@ -1,13 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
 
-mongoose.connect(
-  "mongodb+srv://santhoshs19032003:MCy1kP42D2V4MMPI@cluster0.movkrjw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.listen(8000, () => {
   console.log(`http://localhost:8000/`);
