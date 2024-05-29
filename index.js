@@ -13,7 +13,7 @@ dotenv.config();
 // instance for express or else we use express().get->its not an proper way so we create separate var and store it
 const app = express();
 
-// config json for communicate with json type datas from client to server
+// config json for communicate with json type data's from client to server
 app.use(express.json());
 
 // connection statement
@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 
 // /user to create user
 // async await used to handle promises ( time taken to request and response )
-app.post("/user", async (req, res) => {
+app.post("/register", async (req, res) => {
   try {
     // destructure from req.body
     const { name, email, password } = req.body;
@@ -47,6 +47,29 @@ app.post("/user", async (req, res) => {
         data,
       })
       .status(201);
+  } catch (error) {
+    return res.send(error).status(501);
+  }
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // findOne -> to get correct user details
+    const userDetail = await userModel.findOne({ email, password });
+
+    // suppose userDetails -> null there is no user
+    if (!userDetail) {
+      return res.send({ message: "Invalid Credentials" }).status(404);
+    }
+    return res.send({
+      message: "Authenticate successful",
+      userDetail: {
+        email: userDetail.email,
+        name: userDetail.name,
+      },
+    });
   } catch (error) {
     return res.send(error).status(501);
   }
