@@ -58,6 +58,8 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     // findOne function helps to get correct user details by specifing this line { email, password } we pass email and password which we get from the user
+    // findOne <-> select query in sql
+    // comma works as and operator
     const userDetail = await userModel.findOne({ email, password });
 
     // suppose userDetails -> null there is no user
