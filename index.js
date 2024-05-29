@@ -54,21 +54,22 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
+    // get the email id and password from the user for login purpose
     const { email, password } = req.body;
 
-    // findOne -> to get correct user details
+    // findOne function helps to get correct user details by specifing this line { email, password } we pass email and password which we get from the user
     const userDetail = await userModel.findOne({ email, password });
 
     // suppose userDetails -> null there is no user
     if (!userDetail) {
+      // once return statement aries the remaining block code will not execute so there is no need to specify else part rather we directly write the next statement
       return res.send({ message: "Invalid Credentials" }).status(404);
     }
+
+    // if userDetails exist we send user details to the client by sending(userDetail) object
     return res.send({
       message: "Authenticate successful",
-      userDetail: {
-        email: userDetail.email,
-        name: userDetail.name,
-      },
+      userDetail,
     });
   } catch (error) {
     return res.send(error).status(501);
